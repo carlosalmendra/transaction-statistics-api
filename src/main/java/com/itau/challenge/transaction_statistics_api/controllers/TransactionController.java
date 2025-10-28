@@ -2,6 +2,7 @@ package com.itau.challenge.transaction_statistics_api.controllers;
 
 import com.itau.challenge.transaction_statistics_api.dto.TransactionRequest;
 import com.itau.challenge.transaction_statistics_api.services.TransactionService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class TransactionController {
     private TransactionService transactionService;
 
     @PostMapping("/transaction")
-    private ResponseEntity<Void> createTransaction(@RequestBody TransactionRequest body) {
+    private ResponseEntity<Void> createTransaction(@Valid @RequestBody TransactionRequest body) {
         transactionService.createTransaction(body);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
